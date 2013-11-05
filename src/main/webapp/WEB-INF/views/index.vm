@@ -1,4 +1,4 @@
 #set($title = "first page")
 #parse("header.vm")
-first page
+<h1>first page</h1>
 #include("footer.vm")
