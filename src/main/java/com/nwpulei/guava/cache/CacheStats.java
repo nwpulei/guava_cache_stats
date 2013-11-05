@@ -1,7 +1,5 @@
 package com.nwpulei.guava.cache;
 
-import java.util.concurrent.TimeUnit;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,8 +15,8 @@ import com.google.common.collect.ImmutableMap;
 @Controller
 @RequestMapping("/")
 public class CacheStats {
-    private final Cache<String, String> cache = CacheBuilder.newBuilder().expireAfterWrite(60, TimeUnit.SECONDS)
-            .build();
+    // 需要打开recordStats才能进行统计
+    private final Cache<String, String> cache = CacheBuilder.newBuilder().recordStats().build();
 
     @RequestMapping("/")
     public String index() {
