@@ -1,4 +1,48 @@
 #set($title = "first page")
 #parse("header.vm")
 <h1>first page</h1>
+<div>
+    <h3>add test</h3>
+    <form class="from-inline" role="form" action="/add" method="get">
+        <div class="form-group">
+            <label class="sr-only" for="cacheKey">cache key</label>
+            <input type="text" class="form-control" id="key" name="key" placeholder="cache key">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="cacheKey">cache value</label>
+            <input type="text" class="form-control" id="value" name="value" placeholder="cache value">
+        </div>
+        <button type="submit" class="btn btn-default">submit</button>
+    </form>
+</div>
+
+<div>
+    <h3>del test</h3>
+    <form class="from-inline" role="form" action="/del" method="get">
+        <div class="form-group">
+            <label class="sr-only" for="cacheKey">cache key</label>
+            <input type="key" class="form-control"  id="key" name="key"  placeholder="cache key">
+        </div>
+        <button type="submit" class="btn btn-default">submit</button>
+    </form>
+</div>
+
+<div>
+    <h3>get test</h3>
+    <form class="from-inline" role="form" action="/get" method="get">
+        <div class="form-group">
+            <label class="sr-only" for="cacheKey">cache key</label>
+            <input type="key" class="form-control"  id="key" name="key" placeholder="cache key">
+        </div>
+        <button type="submit" class="btn btn-default">submit</button>
+    </form>
+</div>
+
+<div>
+    <h3>stats test</h3>
+    <form class="from-inline" role="form" action="/stats" method="get">
+        <button type="submit" class="btn btn-default">submit</button>
+    </form>
+</div>
+
 #include("footer.vm")

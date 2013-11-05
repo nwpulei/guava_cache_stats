@@ -1,4 +1,4 @@
 #set($title= "status")
 #parse("header.vm")
-${stats}
+<p>${stats}</p>
 #include("footer.vm")

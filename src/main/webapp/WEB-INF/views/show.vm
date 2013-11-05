@@ -1,3 +1,3 @@
 #parse("header.vm")
-${key}->${value}
+<p>${key}->${value}</p>
 #include("footer.vm")
