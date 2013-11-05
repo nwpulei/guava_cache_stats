@@ -1,1 +1,4 @@
+#set($title= "status")
+#parse("header.vm")
 ${stats}
+#include("footer.vm")

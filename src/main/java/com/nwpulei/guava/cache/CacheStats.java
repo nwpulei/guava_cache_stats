@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.common.cache.Cache;
@@ -25,25 +26,29 @@ public class CacheStats {
     }
 
     @RequestMapping("/add")
-    public ModelAndView add(String key, String value) {
+    public ModelAndView add(@RequestParam String key, @RequestParam String value) {
         cache.put(key, value);
         return new ModelAndView("show", ImmutableMap.of("title", "add k-v", "key", key, "value", value));
     }
 
     @RequestMapping("/del")
-    public ModelAndView del(String key) {
+    public ModelAndView del(@RequestParam String key) {
         cache.invalidate(key);
         return new ModelAndView("show", ImmutableMap.of("title", "del k", "key", key));
     }
 
     @RequestMapping("/get")
-    public ModelAndView get(String key) {
-        return new ModelAndView("show", ImmutableMap.of("title", "get k-v", "key", key, "value",
-                cache.getIfPresent(key)));
+    public ModelAndView get(@RequestParam String key) {
+        if (cache.getIfPresent(key) == null) {
+            return new ModelAndView("message", ImmutableMap.of("title", "message", "message", "can't find value"));
+        } else {
+            return new ModelAndView("show", ImmutableMap.of("title", "get k-v", "key", key, "value",
+                    cache.getIfPresent(key)));
+        }
     }
 
     @RequestMapping("/stats")
     public ModelAndView stats() {
-        return new ModelAndView("stats", "value", cache.stats());
+        return new ModelAndView("stats", "stats", cache.stats());
     }
 }

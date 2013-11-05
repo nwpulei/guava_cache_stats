@@ -1,1 +1,4 @@
+#set($title = "first page")
+#parse("header.vm")
 first page
+#include("footer.vm")
